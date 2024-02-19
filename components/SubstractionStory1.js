@@ -3,7 +3,6 @@ import StyleBase from '../common/StyleBase';
 import NumberInput from './NumberInput';
 import IllustrationImages from './IllustrationImages';
 import { useState } from 'react';
-import { alert } from '../common/alert';
 
 export function SubstractionStory1({
     commonName,
@@ -11,6 +10,8 @@ export function SubstractionStory1({
     component2: { name: name2, image: image2, isBig: isBig2 },
     value1,
     value2,
+    onSuccess,
+    onFailure,
     onNextExecise
 }) {
     const [inputValue, setInputValue] = useState({
@@ -25,9 +26,9 @@ export function SubstractionStory1({
             && inputValue.minuend1 === inputValue.minuend2
             && inputValue.difference1 === value2
             && inputValue.difference1 === inputValue.difference2) {
-            alert('Result', 'Congratulation!');
+            onSuccess();
         } else {
-            alert('Result', 'Wrong. Please try again!')
+            onFailure();
         }
     }
 
@@ -53,7 +54,6 @@ export function SubstractionStory1({
     const substrahend = value1 + value2;
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>(a)</Text>
             <IllustrationImages imagesInfo={[
                 { name: image1, isBig: isBig1, count: value1 },
                 { name: image2, isBig: isBig2, count: value2 }]}

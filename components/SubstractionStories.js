@@ -1,6 +1,8 @@
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SubstractionStory1 } from "./SubstractionStory1";
 import { useState } from "react";
+import Result from "./Result";
+import { alert } from "../common/alert";
 
 const limitNumber = 10;
 
@@ -27,8 +29,10 @@ const stories = [
     }
 ];
 
-function SubstractionStories({ style }) {
+function SubstractionStories({ style, numberOfExercises }) {
     const [story, setStory] = useState(getRandomStory());
+    const [exerciseResults, setExerciseResults] = useState(Array(numberOfExercises).fill(-1));
+    const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
 
     function getRandomStory() {
         const randomIndex = Math.floor(Math.random() * stories.length);
@@ -41,15 +45,45 @@ function SubstractionStories({ style }) {
         };
     }
 
+    function successHandler() {
+        setExerciseResults(prev => prev.map((_, i) => i === currentExerciseIndex ? 1 : prev[i]));
+        alert('Result', "Congratulation! You've got a star");
+    }
+
+    function failureHanlder() {
+        setExerciseResults(prev => prev.map((_, i) => i === currentExerciseIndex ? 0 : prev[i]));
+        alert('Result', 'Wrong. Please try again!');
+    }
+
     function nextExeciseHandler() {
+        if (currentExerciseIndex === numberOfExercises - 1) {
+            alert('Info', 'This is the last exercise');
+            return;
+        }
+
+        setCurrentExerciseIndex(prev => prev + 1);
         setStory(getRandomStory());
     }
 
     return (
         <View style={style}>
-            <SubstractionStory1 {...story} onNextExecise={nextExeciseHandler} />
+            <View style={styles.resultContainer}>
+                <Result execiseResults={exerciseResults} current={currentExerciseIndex} />
+            </View>
+            <SubstractionStory1 {...story}
+                key={currentExerciseIndex}
+                onSuccess={successHandler}
+                onFailure={failureHanlder}
+                onNextExecise={nextExeciseHandler} />
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    resultContainer: {
+        alignItems: 'flex-end',
+        marginBottom: 16
+    }
+})
 
 export default SubstractionStories;
