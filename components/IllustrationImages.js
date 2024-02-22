@@ -16,7 +16,7 @@ function IllustrationImages({ isMultiLine, isMixed, imagesInfo }) {
 
     if (isMultiLine) {
         return <View style={[styles.imageContainer, { flexDirection: 'column' }]}>
-            {imagesInfo.map(imgInfo => <View style={styles.imageRow}>
+            {imagesInfo.map((imgInfo, index) => <View key={`${imgInfo.name}${index}`} style={styles.imageRow}>
                 {[...Array(imgInfo.count)].map((_, index) =>
                     <IllustrationImage key={`${imgInfo.name}_${index}`} name={imgInfo.name} isBig={imgInfo.isBig} />)}
             </View>)}
@@ -32,7 +32,7 @@ function IllustrationImages({ isMultiLine, isMixed, imagesInfo }) {
 }
 
 function IllustrationImage({ name, isBig }) {
-    const size = isBig ? 100 : 50;
+    const size = isBig ? 100 : 60;
     const imageStyle = {
         width: size,
         height: size
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
         borderColor: StyleBase.primaryColor,
         padding: 16,
         borderRadius: 12,
-        marginTop: StyleBase.verticleGap
     },
     imageRow: {
         flexDirection: 'row',

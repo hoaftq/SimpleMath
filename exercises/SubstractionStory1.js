@@ -1,8 +1,9 @@
 import { Text, View, StyleSheet, Button } from 'react-native';
 import StyleBase from '../common/StyleBase';
-import NumberInput from './NumberInput';
-import IllustrationImages from './IllustrationImages';
+import NumberInput from '../components/NumberInput';
+import IllustrationImages from '../components/IllustrationImages';
 import { useState } from 'react';
+import Actions from '../components/Actions';
 
 export function SubstractionStory1({
     commonName,
@@ -10,9 +11,8 @@ export function SubstractionStory1({
     component2: { name: name2, image: image2, isBig: isBig2 },
     value1,
     value2,
-    onSuccess,
-    onFailure,
-    onNextExecise
+    onResult,
+    onNextExercise
 }) {
     const [inputValue, setInputValue] = useState({
         minuend1: '',
@@ -22,14 +22,11 @@ export function SubstractionStory1({
     })
 
     function submitHandler() {
-        if (inputValue.minuend1 === value1
+        const valid = inputValue.minuend1 === value1
             && inputValue.minuend1 === inputValue.minuend2
             && inputValue.difference1 === value2
-            && inputValue.difference1 === inputValue.difference2) {
-            onSuccess();
-        } else {
-            onFailure();
-        }
+            && inputValue.difference1 === inputValue.difference2;
+        onResult(valid);
     }
 
     function inputChangeHandler(inputIdentifier, text) {
@@ -54,6 +51,7 @@ export function SubstractionStory1({
     const substrahend = value1 + value2;
     return (
         <View style={styles.container}>
+            <Text style={styles.title}>Complete the substraction story.</Text>
             <IllustrationImages imagesInfo={[
                 { name: image1, isBig: isBig1, count: value1 },
                 { name: image2, isBig: isBig2, count: value2 }]}
@@ -77,10 +75,10 @@ export function SubstractionStory1({
                 <NumberInput onChange={(number) => inputChangeHandler('difference2', number)} />
                 <Text style={styles.text}> {getDisplayName(name2, value2)}</Text>
             </View>
-            <View style={styles.buttonContainer}>
-                <Button title='Submit' onPress={submitHandler} />
-                <Button title='Next execise' onPress={onNextExecise} />
-            </View>
+            <Actions
+                style={styles.actions}
+                onSubmit={submitHandler}
+                onNextExercise={onNextExercise} />
         </View>
     )
 }
@@ -88,6 +86,10 @@ export function SubstractionStory1({
 const styles = StyleSheet.create({
     container: {
         width: '100%'
+    },
+    title: {
+        fontSize: StyleBase.fontSize,
+        marginBottom: StyleBase.verticleGap
     },
     substrahend: {
         marginTop: StyleBase.verticleGap,
@@ -111,9 +113,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: StyleBase.fontSize
     },
-    buttonContainer: {
-        flexDirection: 'row-reverse',
-        gap: 16,
+    actions: {
         marginTop: StyleBase.verticleGap,
     }
 })

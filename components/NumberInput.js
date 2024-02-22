@@ -7,8 +7,7 @@ function NumberInput({ onChange }) {
     const [textValue, setTextValue] = useState('');
 
     function blurHandler(event) {
-        const value = event.target.value;
-        if (!isValidNumber(value)) {
+        if (!isValidNumber(textValue)) {
             alert('Input', 'Please enter a valid number');
 
             setTextValue('');
@@ -16,7 +15,7 @@ function NumberInput({ onChange }) {
             return;
         }
 
-        onChange(parseInt(value));
+        onChange(parseInt(textValue));
     }
 
     function changeTextHandler(text) {
