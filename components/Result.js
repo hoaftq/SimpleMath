@@ -34,7 +34,7 @@ function Result({ exerciseResults, current }) {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     current: {
         borderWidth: 2,
@@ -44,4 +44,3 @@ const styles = StyleSheet.create({
 })
 
 export default Result;
-

@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text } from "react-native";
-import StyleBase from "../common/StyleBase";
+import CommonStyle from "../common/StyleBase";
 import { useState } from "react";
 import NumberInput from "./NumberInput";
 
@@ -65,12 +65,12 @@ const styles = StyleSheet.create({
     signText: {
         width: 50,
         textAlign: 'center',
-        fontSize: StyleBase.fontSize
+        fontSize: CommonStyle.fontSize
     },
     value: {
         width: 45,
         textAlign: 'center',
-        fontSize: StyleBase.fontSize
+        fontSize: CommonStyle.fontSize
     }
 })
 

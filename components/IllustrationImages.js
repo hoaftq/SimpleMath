@@ -1,5 +1,5 @@
 import { Image, View, StyleSheet } from "react-native";
-import StyleBase from "../common/StyleBase";
+import CommonStyle from "../common/StyleBase";
 
 const builtInImage = {
     soccer_ball: require('../assets/images/soccer_ball.png'),
@@ -48,9 +48,10 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         borderWidth: 2,
-        borderColor: StyleBase.primaryColor,
+        borderColor: CommonStyle.primaryColor,
         padding: 16,
         borderRadius: 12,
+        backgroundColor: 'white'
     },
     imageRow: {
         flexDirection: 'row',

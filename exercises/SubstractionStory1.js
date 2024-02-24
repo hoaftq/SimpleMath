@@ -1,5 +1,5 @@
-import { Text, View, StyleSheet, Button } from 'react-native';
-import StyleBase from '../common/StyleBase';
+import { Text, View, StyleSheet } from 'react-native';
+import CommonStyle from '../common/StyleBase';
 import NumberInput from '../components/NumberInput';
 import IllustrationImages from '../components/IllustrationImages';
 import { useState } from 'react';
@@ -88,32 +88,32 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     title: {
-        fontSize: StyleBase.fontSize,
-        marginBottom: StyleBase.verticleGap
+        fontSize: CommonStyle.fontSize,
+        marginBottom: CommonStyle.verticleGap
     },
     substrahend: {
-        marginTop: StyleBase.verticleGap,
-        fontSize: StyleBase.fontSize
+        marginTop: CommonStyle.verticleGap,
+        fontSize: CommonStyle.fontSize
     },
     minuend: {
         flexDirection: 'row',
-        marginTop: StyleBase.verticleGap,
+        marginTop: CommonStyle.verticleGap,
         alignItems: 'center'
     },
     substraction: {
         flexDirection: 'row',
-        marginTop: StyleBase.verticleGap,
+        marginTop: CommonStyle.verticleGap,
         alignItems: 'center'
     },
     difference: {
         flexDirection: 'row',
-        marginTop: StyleBase.verticleGap,
+        marginTop: CommonStyle.verticleGap,
         alignItems: 'center'
     },
     text: {
-        fontSize: StyleBase.fontSize
+        fontSize: CommonStyle.fontSize
     },
     actions: {
-        marginTop: StyleBase.verticleGap,
+        marginVertical: CommonStyle.verticleGap,
     }
 })

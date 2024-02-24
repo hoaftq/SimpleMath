@@ -1,5 +1,5 @@
 import { TextInput, StyleSheet } from "react-native";
-import StyleBase from "../common/StyleBase";
+import CommonStyle from "../common/StyleBase";
 import { useState } from "react";
 import { alert } from "../common/alert";
 
@@ -41,11 +41,11 @@ function NumberInput({ onChange }) {
 const styles = StyleSheet.create({
     numberInput: {
         width: 45,
-        borderColor: StyleBase.primaryColor,
+        borderColor: CommonStyle.primaryColor,
         borderWidth: 1,
         borderRadius: 4,
         backgroundColor: 'lightyellow',
-        fontSize: StyleBase.fontSize,
+        fontSize: CommonStyle.fontSize,
         textAlign: 'center',
         padding: 8
     },

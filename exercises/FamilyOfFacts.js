@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import IllustrationImages from "../components/IllustrationImages";
 import Operation from "../components/Operation";
-import StyleBase from "../common/StyleBase";
+import CommonStyle from "../common/StyleBase";
 import { useState } from "react";
 import Actions from "../components/Actions";
 
@@ -55,8 +55,8 @@ function FamilyOfFacts({
         onResult(valid);
     }
 
-    const containerHorizontal = width > StyleBase.largeWidth ? { flexDirection: 'row' } : undefined;
-    const imageContainerHorizontal = width > StyleBase.largeWidth ? { flex: 1 } : undefined;
+    const containerHorizontal = width > CommonStyle.largeWidth ? { flexDirection: 'row' } : undefined;
+    const imageContainerHorizontal = width > CommonStyle.largeWidth ? { flex: 1 } : undefined;
 
     return (
         <View>
@@ -105,8 +105,8 @@ function FamilyOfFacts({
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: StyleBase.fontSize,
-        marginBottom: StyleBase.verticleGap
+        fontSize: CommonStyle.fontSize,
+        marginBottom: CommonStyle.verticleGap
     },
     container: {
         gap: 16
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         gap: 8,
     },
     actions: {
-        marginTop: StyleBase.verticleGap, // This doesn't work
+        marginVertical: CommonStyle.verticleGap,
     }
 })
 

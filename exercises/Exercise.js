@@ -2,10 +2,9 @@ import { StyleSheet, View } from "react-native";
 import { useState } from "react";
 import Result from "../components/Result";
 import { alert } from "../common/alert";
-import FamilyOfFacts from "./FamilyOfFacts";
-import { SubstractionStory1 } from "./SubstractionStory1";
-
-const limitNumber = 10;
+import FamilyOfFacts from "../exercises/FamilyOfFacts";
+import { SubstractionStory1 } from "../exercises/SubstractionStory1";
+import CommonStyle from "../common/StyleBase";
 
 const stories = [
     {
@@ -30,7 +29,7 @@ const stories = [
     }
 ];
 
-function Exercise({ style, numberOfExercises }) {
+function Exercise({ style, numberOfExercises, onFinish }) {
     const [story, setStory] = useState(getRandomStory());
     const [exerciseResults, setExerciseResults] = useState(Array(numberOfExercises).fill(-1));
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -38,8 +37,8 @@ function Exercise({ style, numberOfExercises }) {
 
     function getRandomStory() {
         const randomIndex = Math.floor(Math.random() * stories.length);
-        const value1 = Math.floor(Math.random() * (limitNumber - 1)) + 1;
-        const value2 = Math.floor(Math.random() * (limitNumber - value1)) + 1;
+        const value1 = Math.floor(Math.random() * (numberOfExercises - 1)) + 1;
+        const value2 = Math.floor(Math.random() * (numberOfExercises - value1)) + 1;
         return {
             ...stories[randomIndex],
             value1,
@@ -59,7 +58,7 @@ function Exercise({ style, numberOfExercises }) {
 
     function nextExerciseHandler() {
         if (currentExerciseIndex === numberOfExercises - 1) {
-            alert('Info', 'This is the last exercise');
+            onFinish();
             return;
         }
 
@@ -69,7 +68,7 @@ function Exercise({ style, numberOfExercises }) {
     }
 
     return (
-        <View style={style}>
+        <View style={[styles.container, style]}>
             <View style={styles.resultContainer}>
                 <Result exerciseResults={exerciseResults} current={currentExerciseIndex} />
             </View>
@@ -100,9 +99,12 @@ function Exercise({ style, numberOfExercises }) {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        padding: CommonStyle.screenPadding
+    },
     resultContainer: {
         alignItems: 'flex-end',
-        marginBottom: 16
+        marginBottom: 16,
     }
 })
 
