@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, useWindowDimensions } from "react-native";
+import { KeyboardAvoidingView, ScrollView, StyleSheet, useWindowDimensions } from "react-native";
 import CommonStyle from "../common/StyleBase";
 import Exercise from "../exercises/Exercise";
 import { alert } from "../common/alert";
@@ -17,13 +17,15 @@ function ExerciseScreen({ navigation, route }) {
     const exerciseStyle = { width: width > CommonStyle.largeWidth ? CommonStyle.largeWidth : '100%' };
 
     return (
-        <ScrollView style={styles.container}>
-            <View style={styles.exerciseContainer}>
-                <Exercise style={exerciseStyle}
-                    numberOfExercises={numberOfExercises}
-                    onFinish={finishHandler} />
-            </View>
-        </ScrollView>)
+        <KeyboardAvoidingView behavior='position'>
+            <ScrollView style={styles.container}>
+                <View style={styles.exerciseContainer}>
+                    <Exercise style={exerciseStyle}
+                        numberOfExercises={numberOfExercises}
+                        onFinish={finishHandler} />
+                </View>
+            </ScrollView>
+        </KeyboardAvoidingView>)
 }
 
 const styles = StyleSheet.create({
