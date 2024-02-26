@@ -35,7 +35,7 @@ function NumberInput({ style, onChange }) {
             selectTextOnFocus={true}
             onChangeText={changeTextHandler}
             onBlur={blurHandler} />
-    )
+    );
 }
 
 const styles = StyleSheet.create({

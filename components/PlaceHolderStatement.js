@@ -12,8 +12,7 @@ function PlaceHolderStatement({ statement, onChange }) {
                 {i < statementParts.length - 1 && <NumberInput style={styles.input} onChange={(number) => onChange(i, number)} />}
             </Fragment>)}
         </View>
-
-    )
+    );
 }
 
 const styles = StyleSheet.create({

@@ -29,7 +29,7 @@ function Result({ exerciseResults, current }) {
                 return <Image key={i} style={style} source={resultImage} />;
             })}
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({

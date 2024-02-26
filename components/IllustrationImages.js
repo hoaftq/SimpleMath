@@ -11,15 +11,22 @@ const builtInImage = {
     girl: require('../assets/images/girl.png'),
     pear: require('../assets/images/pear.png'),
     apple: require('../assets/images/apple.png'),
+    yellow_flight_ticket: require('../assets/images/yellow_flight_ticket.png'),
+    cyan_flight_ticket: require('../assets/images/cyan_flight_ticket.png'),
 }
 
 function IllustrationImages({ isMultiLine, isMixed, imagesInfo }) {
+
+    function getKey(imgInfo, index) {
+        return `${imgInfo.name}_${imgInfo.isBig ? 'big' : ''}_${imgInfo.isDeleted ? 'deleted' : ''}_${index}`;
+    }
+
     if (isMultiLine) {
         return <View style={[styles.imageContainer, { flexDirection: 'column' }]}>
             {imagesInfo.map((imgInfo, index) => <View key={`${imgInfo.name}${index}`} style={styles.imageRow}>
                 {[...Array(imgInfo.count)].map((_, index) =>
                     <IllustrationImage
-                        key={`${imgInfo.name}_${index}`}
+                        key={getKey(imgInfo, index)}
                         name={imgInfo.name}
                         isBig={imgInfo.isBig}
                         isDeleted={imgInfo.isDeleted} />)}
@@ -31,12 +38,12 @@ function IllustrationImages({ isMultiLine, isMixed, imagesInfo }) {
         <View style={styles.imageContainer}>
             {imagesInfo.flatMap(imgInfo => [...Array(imgInfo.count)].map((_, index) =>
                 <IllustrationImage
-                    key={`${imgInfo.name}_${index}`}
+                    key={getKey(imgInfo, index)}
                     name={imgInfo.name}
                     isBig={imgInfo.isBig}
                     isDeleted={imgInfo.isDeleted} />))}
         </View>
-    )
+    );
 }
 
 function IllustrationImage({ name, isBig, isDeleted }) {

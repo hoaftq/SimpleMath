@@ -10,11 +10,11 @@ import SubstractionStory2 from "./SubstractionStory2";
 const templates = [
     {
         commonName: 'fish',
-        component1: { isBig: true, name: 'big fish', image: 'big_gold_fish' },
+        component1: { name: 'big fish', image: 'big_gold_fish', isBig: true },
         component2: { name: 'small fish', image: 'big_gold_fish' },
     },
     {
-        commonName: 'fruit',
+        commonName: 'fruits',
         component1: { name: ['apple', 'apples'], image: 'apple' },
         component2: { name: ['pear', 'pears'], image: 'pear' },
     },
@@ -27,6 +27,11 @@ const templates = [
         commonName: 'children',
         component1: { name: ['girl', 'girls'], image: 'girl' },
         component2: { name: ['boy', 'boys'], image: 'boy' },
+    },
+    {
+        commonName: 'tickets',
+        component1: { name: ['yellow ticket', 'yellow tickets'], image: 'yellow_flight_ticket', isBig: true },
+        component2: { name: ['cyan ticket', 'cyan tickets'], image: 'cyan_flight_ticket', isBig: true },
     }
 ];
 
@@ -64,8 +69,16 @@ function Exercise({ style, numberOfExercises, onFinish }) {
         }
 
         setCurrentExerciseIndex(prev => prev + 1);
-        setStory(getRandomStory());
-        setExerciseType(Math.floor(Math.random() * 5));
+
+        const story = getRandomStory();
+        const exerciseType = Math.floor(Math.random() * 5);
+        // TODO workaround
+        if (exerciseType === 4 && story.commonName === 'children') {
+            exerciseType = 3;
+        }
+
+        setStory(story);
+        setExerciseType(exerciseType);
     }
 
     return (

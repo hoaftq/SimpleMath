@@ -11,7 +11,7 @@ function CrossImage({ style, source }) {
                 source={require('../assets/images/x_icon.png')}
                 resizeMode="contain" />
         </ImageBackground>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
