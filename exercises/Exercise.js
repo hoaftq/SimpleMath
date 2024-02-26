@@ -5,8 +5,9 @@ import { alert } from "../common/alert";
 import FamilyOfFacts from "../exercises/FamilyOfFacts";
 import { SubstractionStory1 } from "../exercises/SubstractionStory1";
 import CommonStyle from "../common/StyleBase";
+import SubstractionStory2 from "./SubstractionStory2";
 
-const stories = [
+const templates = [
     {
         commonName: 'fish',
         component1: { isBig: true, name: 'big fish', image: 'big_gold_fish' },
@@ -36,11 +37,11 @@ function Exercise({ style, numberOfExercises, onFinish }) {
     const [exerciseType, setExerciseType] = useState(0);
 
     function getRandomStory() {
-        const randomIndex = Math.floor(Math.random() * stories.length);
+        const randomIndex = Math.floor(Math.random() * templates.length);
         const value1 = Math.floor(Math.random() * (numberOfExercises - 1)) + 1;
         const value2 = Math.floor(Math.random() * (numberOfExercises - value1)) + 1;
         return {
-            ...stories[randomIndex],
+            ...templates[randomIndex],
             value1,
             value2
         };
@@ -64,7 +65,7 @@ function Exercise({ style, numberOfExercises, onFinish }) {
 
         setCurrentExerciseIndex(prev => prev + 1);
         setStory(getRandomStory());
-        setExerciseType(Math.floor(Math.random() * 4));
+        setExerciseType(Math.floor(Math.random() * 5));
     }
 
     return (
@@ -92,6 +93,18 @@ function Exercise({ style, numberOfExercises, onFinish }) {
             {exerciseType === 3 && <FamilyOfFacts {...story}
                 key={currentExerciseIndex}
                 type="---"
+                onResult={resultHandler}
+                onNextExercise={nextExerciseHandler} />}
+
+            {exerciseType === 4 && <SubstractionStory2
+                key={currentExerciseIndex}
+                template={{
+                    name: story.component1.name,
+                    image: story.component1.image,
+                    isBig: story.component1.isBig
+                }}
+                substrahend={story.value1 + story.value2}
+                minuend={story.value1}
                 onResult={resultHandler}
                 onNextExercise={nextExerciseHandler} />}
         </View>

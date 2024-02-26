@@ -6,8 +6,8 @@ import { useState } from "react";
 import Actions from "../components/Actions";
 
 const titles = {
-    '--X': 'Write a substraction equation for the picture.',
-    'XX-': 'Complete the equation.',
+    '--X': 'Write addition and substraction equations for the picture.',
+    'XX-': 'Complete the equations.',
     '---': 'Complete the family of facts.'
 }
 

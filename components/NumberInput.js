@@ -3,7 +3,7 @@ import CommonStyle from "../common/StyleBase";
 import { useState } from "react";
 import { alert } from "../common/alert";
 
-function NumberInput({ onChange }) {
+function NumberInput({ style, onChange }) {
     const [textValue, setTextValue] = useState('');
 
     function blurHandler(event) {
@@ -28,7 +28,7 @@ function NumberInput({ onChange }) {
 
     return (
         <TextInput
-            style={styles.numberInput}
+            style={[style, styles.numberInput]}
             maxLength={2}
             value={textValue}
             keyboardType="number-pad"
